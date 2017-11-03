@@ -167,6 +167,10 @@ BoneMorphometryFeaturesImageFilter<TInputImage, TOutputImage, TMaskImage>
             }
         }
 
+        //in order to avoid division by 0
+        if (numBoneVoxels == 0) numBoneVoxels++;
+        if ((numX + numXO + numY + numYO + numZ + numZ) == 0) numX++;
+
         RealType PlX = (RealType) ((numX+numXO)/2.0) / (RealType) (numVoxels * inSpacing[0]) * 2;
         RealType PlY = (RealType) ((numY+numYO)/2.0) / (RealType) (numVoxels * inSpacing[1]) * 2;
         RealType PlZ = (RealType) ((numZ+numZO)/2.0) / (RealType) (numVoxels * inSpacing[2]) * 2;
